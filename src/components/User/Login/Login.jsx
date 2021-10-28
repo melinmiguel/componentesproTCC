@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext} from 'react';
 import { useHistory } from 'react-router-dom';
 import StoreContext from 'components/Store/Context';
 import UIButton from 'components/UI/Button/Button';
@@ -10,11 +10,14 @@ function initialState() {
 }
 
 function login({ user, password }) {
-  if (user === 'admin' && password === 'admin') {
-    return { token: '1234' };
+  let valorToken = "bcGVkcm6xMjNiJ2MyVnVhR0v4TWpNPScyMDIxLTA5LTAyIDAwOJE2OJIyLjY";
+  if ((user === 'pedro123' && password === 'senha1231') || (user === 'admin' && password === 'admin')) {
+ sessionStorage.setItem('token', valorToken)
+    return { token: 'bcGVkcm6xMjNiJ2MyVnVhR0v4TWpNPScyMDIxLTA5LTAyIDAwOJE2OJIyLjY' };
   }
   return { error: 'Usuário ou senha inválido' };
 }
+
 
 const UserLogin = () => {
   const [values, setValues] = useState(initialState);
@@ -47,26 +50,35 @@ const UserLogin = () => {
 
   return (
     <div className="user-login">
-      <h1 className="user-login__title">Acessar o Sistema</h1>
+      
+      <div className="divEsquerda" >
+      <div className="logo"/>
+      <h1 className="user-login__title">Bem Vindo a área de administração.
+      <h1 className="user-login__title">Faça seu login abaixo.</h1>
+      </h1>
+
+
       <form onSubmit={onSubmit}>
         <div className="user-login__form-control">
-          <label htmlFor="user">Usuário</label>
+          
           <input
             id="user"
             type="text"
             name="user"
             onChange={onChange}
             value={values.user}
+            placeholder="Login"
           />
         </div>
         <div className="user-login__form-control">
-          <label htmlFor="password">Senha</label>
+          
           <input
             id="password"
             type="password"
             name="password"
             onChange={onChange}
             value={values.password}
+            placeholder="Senha"
           />
         </div>
         {error && (
@@ -81,6 +93,9 @@ const UserLogin = () => {
           Entrar
         </UIButton>
       </form>
+      <h1 className="user-login__title">2021™ Itools. Todos os direitos reservados.</h1>
+      </div>
+      <div className="divDireita" />
     </div>
   );
 };
