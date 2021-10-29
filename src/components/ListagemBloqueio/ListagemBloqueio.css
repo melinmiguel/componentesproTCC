@@ -1,0 +1,48 @@
+.container{
+  background-color: WHITE;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: solid 1px;
+  border-color: #2d62ed;
+  width: 100%;
+  margin-top:14px;
+}
+
+.containerName{
+    display: flex;
+    flex-direction: column;
+}
+
+.title{  
+    margin: 10px 10px 5px 15px;
+    font-weight: 100px;
+    }
+
+.email{
+    margin: 10px 10px 5px 15px;
+    min-width:320px;
+}
+
+.name{
+    margin: 10px 10px 5px 15px;
+    min-width:250px;
+}
+
+.ButtonList{
+    margin-left: 10px;
+    background-color: darkBlue;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+.ContainerBotoes{
+    display:flex;
+}
