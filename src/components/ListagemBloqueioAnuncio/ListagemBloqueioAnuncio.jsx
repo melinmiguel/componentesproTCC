@@ -28,9 +28,13 @@ const ListagemBloqueioAnuncio = (props) => {
           <label className="title">ID proprietário </label>
           <label className="email">{props.owner_id}</label>
         </div>
+        <div className="containerName">
+          <label className="title">Status</label>
+          <label className="email">{(props.status)? props.status: 'Ok' }</label>
+        </div>
         {console.log(props)}
     <div className="containerBotoes">
-        <button className="ButtonList" onClick={() => {block(props.id)}}>Boquear</button>
+        <button className="ButtonList" onClick={() => {block(props.id)}}>Bloquear</button>
         <button className="ButtonList" onClick={() => {console.log("cliclou no desbloquear")}}>Desbloquear</button>
     </div>
     </div>

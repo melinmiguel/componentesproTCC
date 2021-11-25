@@ -30,9 +30,13 @@ console.log(props.isDriver)
           <label className="title">E-mail</label>
           <label className="email">{props.email}</label>
         </div>
+        <div className="containerName">
+          <label className="title">Status</label>
+          <label className="email">{(props.status)? props.status: 'Ok' }</label>
+        </div>
         {console.log(props)}
     <div className="containerBotoes">
-        <button className="ButtonList" onClick={() => {block(props.id)}}>Boquear</button>
+        <button className="ButtonList" onClick={() => {block(props.id)}}>Bloquear</button>
         <button className="ButtonList" onClick={() => {console.log("cliclou no desbloquear")}}>Desbloquear</button>
     </div>
     </div>

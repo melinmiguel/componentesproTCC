@@ -2,6 +2,7 @@ import React, { useContext, useEffect, state, useState } from 'react';
 import StoreContext from 'components/Store/Context';
 import ListagemBloqueio from 'components/ListagemBloqueio/ListagemBloqueio';
 import ListagemBloqueioAnuncio from 'components/ListagemBloqueioAnuncio/ListagemBloqueioAnuncio';
+import ListagemMotoristasApprove from 'components/ListagemMotoristasApprove/ListagemMotoristasApprove';
 
 import './Home.css';
 import api from '../../api'
@@ -12,6 +13,8 @@ const PagesHome = () => {
   const [users, setUsers] = useState([]);
   const [drivers, setDrivers] = useState([]);
   const [anuncio, setAnuncio] = useState([]);
+  const [motoristasPendentes, setMotoristasPendentes] = useState([]);
+
 
 
   async function getUsers() {
@@ -35,10 +38,18 @@ const PagesHome = () => {
       }))  
   }
 
+  function getPendingApprovalDrivers() {
+    api.get('api/v1/resources/admin/drivers/pending').then(
+      (({data}) =>{
+        setMotoristasPendentes(data);
+      }))  
+  }
+
   useEffect(() => {
     getUsers();
     getDrivers();
     getAnnoucements();
+    getPendingApprovalDrivers();
      //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -62,17 +73,21 @@ const PagesHome = () => {
       <div className="containerOpcoes">
           <div className="tablesLaterais">
             <div className="tablesLaterais-titulo">Bloqueio de Usuários</div>
-            {users?.map((user) => (<ListagemBloqueio key={user.id} id={user.id} name={user.name} email={user.email}/>))}
+            {users?.map((user) => (<ListagemBloqueio key={user.id} id={user.id} name={user.name} email={user.email} status={user.status}/> ))}
           </div>
           <div className="tablesLaterais">
             <div className="tablesLaterais-titulo">Bloqueio de Transportador</div>
             {drivers?.map((user) => 
-            (<ListagemBloqueio isDriver key={user.id} id={user.id} name={user.name} email={user.email}/>))}
+            (<ListagemBloqueio isDriver key={user.id} id={user.id} name={user.name} email={user.email} status={user.status}/>))}
           </div>
           <div className="tablesLaterais">
             <div className="tablesLaterais-titulo">Bloqueio de Anuncio</div>
             {anuncio?.map((user) => 
-            (<ListagemBloqueioAnuncio key={user.id} id={user.id} category={user.category} name={user.name} owner_id={user.owner_id} />))}
+            (<ListagemBloqueioAnuncio key={user.id} id={user.id} category={user.category} name={user.name} owner_id={user.owner_id} status={user.status}/>))}
+          </div>
+          <div className="tablesLaterais">
+            <div className="tablesLaterais-titulo">Liberação de motorista</div>
+            {motoristasPendentes?.map((user) => (<ListagemMotoristasApprove key={user.id} id={user.id} name={user.name} email={user.email}/>))}
           </div>
       </div>    
     </div>
