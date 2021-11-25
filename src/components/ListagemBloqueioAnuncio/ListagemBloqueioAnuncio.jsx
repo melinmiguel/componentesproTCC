@@ -10,6 +10,11 @@ const ListagemBloqueioAnuncio = (props) => {
     window.alert(`Anuncio ${id} bloqueado`);
   }
 
+  async function unblock(id){
+    await api.post(`api/v1/resources/admin/users/${id}/unblock`);
+    window.alert(`Anuncio ${id} desbloqueado`);
+  }
+
   return (
     <div className="container">
         <div className="containerName">
@@ -35,7 +40,7 @@ const ListagemBloqueioAnuncio = (props) => {
         {console.log(props)}
     <div className="containerBotoes">
         <button className="ButtonList" onClick={() => {block(props.id)}}>Bloquear</button>
-        <button className="ButtonList" onClick={() => {console.log("cliclou no desbloquear")}}>Desbloquear</button>
+        <button className="ButtonList" onClick={() => {unblock(props.id)}}>Desbloquear</button>
     </div>
     </div>
   );

@@ -16,6 +16,18 @@ console.log(props.isDriver)
       window.alert(`Transportador ${id} bloqueado`);
     }
   }
+
+  async function unBlock(id){
+    if(!props.isDriver){
+      await api.post(`api/v1/resources/admin/users/${id}/unblock`);
+      window.alert(`Usuário ${id} desbloqueado`);
+     }
+    else{
+        await api.post(`api/v1/resources/admin/drivers/${id}/unblock`);
+        window.alert(`Transportador ${id} desbloqueado`);
+      }
+    }
+
   return (
     <div className="container">
         <div className="containerName">
@@ -37,7 +49,7 @@ console.log(props.isDriver)
         {console.log(props)}
     <div className="containerBotoes">
         <button className="ButtonList" onClick={() => {block(props.id)}}>Bloquear</button>
-        <button className="ButtonList" onClick={() => {console.log("cliclou no desbloquear")}}>Desbloquear</button>
+        <button className="ButtonList" onClick={() => {unBlock(props.id)}}>Desbloquear</button>
     </div>
     </div>
   );
